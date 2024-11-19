@@ -1,24 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="830e985c-e20c-4e27-8c3a-fdb0f902f160" name="Changes" comment="" />
+    <list default="true" id="830e985c-e20c-4e27-8c3a-fdb0f902f160" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/articles/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project_Assignment/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project_Assignment/settings.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 1
 }]]></component>
   <component name="ProjectId" id="2p5IpBxoamhUC3H9r4sltGv3WXN" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -65,8 +91,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732049690414</updated>
-      <workItem from="1732049699421" duration="16000" />
+      <workItem from="1732049699421" duration="702000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
