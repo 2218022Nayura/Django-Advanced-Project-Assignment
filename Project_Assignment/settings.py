@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'articles',
 ]
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -58,7 +57,7 @@ ROOT_URLCONF = 'Project_Assignment.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # Menambahkan folder templates di project root
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,6 +119,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Media files (images, etc.)
+MEDIA_URL = '/media/'  # URL yang dapat diakses oleh pengguna untuk mengakses file media
+MEDIA_ROOT = BASE_DIR / 'media'  # Direktori tempat file media disimpan
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

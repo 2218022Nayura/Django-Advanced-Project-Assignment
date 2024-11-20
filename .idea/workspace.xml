@@ -5,28 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="830e985c-e20c-4e27-8c3a-fdb0f902f160" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/articles/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/migrations/0002_alter_category_name.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/templates/articles/article_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/templates/articles/article_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/templates/articles/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/articles/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/article_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/article_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Project_Assignment/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project_Assignment/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project_Assignment/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project_Assignment/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/articles/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/articles/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/articles/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2p5IpBxoamhUC3H9r4sltGv3WXN" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -41,11 +49,13 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -91,7 +101,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732049690414</updated>
-      <workItem from="1732049699421" duration="702000" />
+      <workItem from="1732049699421" duration="2051000" />
+      <workItem from="1732051782380" duration="533000" />
+      <workItem from="1732052328386" duration="33000" />
+      <workItem from="1732052371989" duration="69000" />
+      <workItem from="1732110816923" duration="3461000" />
+      <workItem from="1732123780907" duration="7945000" />
     </task>
     <servers />
   </component>
