@@ -15,20 +15,20 @@ Django Article Hub (DAH) adalah aplikasi berbasis web untuk mengelola artikel. P
 
 ### **Day 1: Setup Project and Model Creation**
 #### Date: 20 Nov 2024
-- **Setup Django Project**:
+- **Setup Django Project**:_
   - Initialized Django project using `django-admin startproject` and created the main application **articles** using `startapp`.
   
 - **Model Creation**:
   - Created models for **UserProfile**, **Article**, and **Category**.
   - **UserProfile** is linked to Django's default **User** model.
-  - **Article** includes fields such as `title`, `content`, `category`, `author`, `created_at`, and `updated_at`.
+  - **Article** includes fields such as `title`, `content(soon)`, `category`, `author`, `created_at`, and `updated_at(soon)`.
   - **Category** helps organize articles into categories.
   
 - **Database Migration**:
   - Successfully performed database migration to align the models with the SQLite database.
   
 - **Testing**:
-  - Confirmed the Django project runs correctly on **http://127.0.0.1:8000/**, with models and database functioning as expected.
+  - Confirmed the Django project runs correctly with models and database functioning as expected.
 
 ---
 
