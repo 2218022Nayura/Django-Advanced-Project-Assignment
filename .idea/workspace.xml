@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="830e985c-e20c-4e27-8c3a-fdb0f902f160" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/articles/migrations/0002_alter_category_name.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/templates/articles/article_detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/templates/articles/article_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/templates/articles/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/article_detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/article_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project_Assignment/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project_Assignment/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project_Assignment/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Project_Assignment/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +35,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Merging main",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -106,7 +93,7 @@
       <workItem from="1732052328386" duration="33000" />
       <workItem from="1732052371989" duration="69000" />
       <workItem from="1732110816923" duration="3461000" />
-      <workItem from="1732123780907" duration="7945000" />
+      <workItem from="1732123780907" duration="8951000" />
     </task>
     <servers />
   </component>
