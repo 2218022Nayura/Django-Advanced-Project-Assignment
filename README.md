@@ -11,20 +11,45 @@ Django Article Hub (DAH) adalah aplikasi berbasis web untuk mengelola artikel. P
 - **Programming Language**: Python
 - **Libraries**: Pillow, Django REST Framework (direncanakan untuk fitur API)
 
-## PROGRESS 
-### 20/11/2024
-- **Judul dan Konsep Aplikasi** telah ditentukan.
-- **Setup Proyek Django**:
-  - Menginisialisasi proyek Django dengan perintah `django-admin startproject` dan membuat aplikasi utama **articles** menggunakan `startapp`.
-  
-- **Membuat Model Utama**:
-  - **UserProfile**: Menambahkan model untuk profil pengguna, yang terkait dengan model **User** milik Django.
-  - **Article**: Membuat model artikel dengan fields seperti `title`, `content`, `category`, `author`, `created_at`, dan `updated_at`.
-  - **Category**: Membuat model kategori untuk mengelompokkan artikel.
+## PROGRESS
 
-- **Migrasi Database**: 
-  - Berhasil melakukan migrasi database untuk mencocokkan model yang telah dibuat dengan database SQLite.
+### **Day 1: Setup Project and Model Creation**
+#### Date: 20 Nov 2024
+- **Setup Django Project**:
+  - Initialized Django project using `django-admin startproject` and created the main application **articles** using `startapp`.
   
-- **Pengecekan**:
-  - Proyek telah berhasil dijalankan pada **http://127.0.0.1:8000/** dan memastikan bahwa model dan database berfungsi dengan baik.
+- **Model Creation**:
+  - Created models for **UserProfile**, **Article**, and **Category**.
+  - **UserProfile** is linked to Django's default **User** model.
+  - **Article** includes fields such as `title`, `content`, `category`, `author`, `created_at`, and `updated_at`.
+  - **Category** helps organize articles into categories.
+  
+- **Database Migration**:
+  - Successfully performed database migration to align the models with the SQLite database.
+  
+- **Testing**:
+  - Confirmed the Django project runs correctly on **http://127.0.0.1:8000/**, with models and database functioning as expected.
+
+---
+
+### **Day 2: Admin Panel and Dummy Data**
+#### Date: 21 Nov 2024
+- **Admin Panel Customization**:
+  - Created models for **Article**, **Category**, and **UserProfile**.
+  - Customized admin panel to display, filter, and search articles.
+  - Articles are ordered by creation date for easy management.
+
+- **Dummy Data Added**:
+  - Added dummy categories: `Tech`, `Lifestyle`, and `Testing`.
+  - Added dummy articles: `Tech Article 1`, `Lifestyle Article 1`, and `Test 1`.
+
+- **Testing**:
+  - Successfully tested adding, editing, and deleting articles and categories via the Django admin panel.
+
+- **Git Commit**:
+  - Commit message: **"Customize admin panel and add dummy data"**
+  - Pushed to GitHub to track progress.
+
+---
+
 
