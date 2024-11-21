@@ -1,15 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Django Article Hub</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <h1 class="my-4">Welcome to Django Article Hub</h1>
-        <a href="{% url 'article_list' %}" class="btn btn-primary">Go to Articles</a>
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome to Django Current News</h1>
+    <p>Find the latest and most popular articles on our platform.</p>
+
+    <div class="form-group">
+        <label for="categorySelect">Select Category</label>
+        <select class="form-control" id="categorySelect">
+            <option>Select Category</option>
+            {% for category in categories %}
+                <option>{{ category.name }}</option>
+            {% endfor %}
+        </select>
     </div>
-</body>
-</html>
+
+    <h2>Latest Articles</h2>
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p>{{ article.content|truncatewords:20 }}</p>
+                        <a href="{% url 'article_detail' article.pk %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

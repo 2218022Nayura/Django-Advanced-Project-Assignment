@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Latest Articles</h2>
+  <div class="row">
+    {% for article in articles %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          {% if article.image %}
+            <img src="{{ article.image.url }}" alt="{{ article.title }}" class="card-img-top" style="width: 300px; height: 300px;">
+          {% else %}
+            <div class="card-img-top" style="width: 300px; height: 300px; background-color: gray;">
+              500 x 300
+            </div>
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <p class="card-text">{{ article.content|truncatewords:20 }}</p>
+            <a href="{% url 'article_detail' article.pk %}" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

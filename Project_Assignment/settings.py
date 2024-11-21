@@ -57,7 +57,7 @@ ROOT_URLCONF = 'Project_Assignment.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Menambahkan folder templates di project root
+        'DIRS': [BASE_DIR / 'templates'],  # Pastikan ini ada di sini
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +69,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'Project_Assignment.wsgi.application'
 
@@ -120,6 +121,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Menambahkan direktori untuk static files
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
 # Media files (images, etc.)
 MEDIA_URL = '/media/'  # URL yang dapat diakses oleh pengguna untuk mengakses file media
 MEDIA_ROOT = BASE_DIR / 'media'  # Direktori tempat file media disimpan
@@ -128,3 +132,8 @@ MEDIA_ROOT = BASE_DIR / 'media'  # Direktori tempat file media disimpan
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS (Cross-Origin Resource Sharing) settings
+# Untuk aplikasi yang membutuhkan request dari domain lain
+# CORS_ALLOW_ALL_ORIGINS = True  # Bisa menambah jika menggunakan CORS
+

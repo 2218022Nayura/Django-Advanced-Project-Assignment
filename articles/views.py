@@ -1,16 +1,27 @@
-from django.http import HttpResponse  # Menambahkan import untuk HttpResponse
-from django.shortcuts import render
-from .models import Article
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
+from .models import Article, Category
 
-# Tampilan untuk menampilkan daftar artikel
-def home(request):
-    return render(request, 'home.html')
+# CBV untuk daftar artikel
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'article_list.html'
+    context_object_name = 'articles'
 
+# CBV untuk detail artikel
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = 'article_detail.html'
+    context_object_name = 'article'
+
+# FBV untuk artikel berdasarkan kategori
 def article_list(request):
-    articles = Article.objects.all()
-    return render(request, 'article_list.html', {'articles': articles})
+    categories = Category.objects.all()  # Mengambil semua kategori
+    articles = Article.objects.all()  # Mengambil semua artikel
+    return render(request, 'article_list.html', {'articles': articles, 'categories': categories})
 
-def article_detail(request, pk):
-    # Mengambil artikel berdasarkan primary key (pk)
-    article = Article.objects.get(pk=pk)
-    return render(request, 'article_detail.html', {'article': article})
+# View untuk menampilkan artikel berdasarkan kategori
+def article_list_by_category(request, pk):
+    category = Category.objects.get(pk=pk)  # Mendapatkan kategori berdasarkan ID
+    articles = Article.objects.filter(category=category)  # Mengambil artikel berdasarkan kategori
+    return render(request, 'article_list.html', {'articles': articles, 'category': category})

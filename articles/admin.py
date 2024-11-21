@@ -1,14 +1,15 @@
 from django.contrib import admin
 from .models import Article, Category, UserProfile
 
-# Kustomisasi admin untuk model Article
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'author', 'created_at')  # Menampilkan kolom artikel
-    list_filter = ('category', 'created_at')  # Filter berdasarkan kategori dan tanggal
-    search_fields = ('title', 'content')  # Pencarian berdasarkan judul dan konten
-    ordering = ('-created_at',)  # Urutkan berdasarkan tanggal terbaru
+# Kustomisasi admin untuk model UserProfile
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'bio')  # Menampilkan user dan bio
+    search_fields = ('user__username',)  # Pencarian berdasarkan username user
 
-admin.site.register(Article, ArticleAdmin)
+# Hapus baris duplikat ini jika ada
+# admin.site.register(UserProfile, UserProfileAdmin)
+
+admin.site.register(UserProfile, UserProfileAdmin)  # Pastikan hanya ada satu kali registrasi
 
 # Kustomisasi admin untuk model Category
 class CategoryAdmin(admin.ModelAdmin):
@@ -17,9 +18,11 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 
-# Kustomisasi admin untuk model UserProfile
-class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'bio')  # Menampilkan user dan bio
-    search_fields = ('user__username',)  # Pencarian berdasarkan username user
+# Kustomisasi admin untuk model Article
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'author', 'created_at')  # Menampilkan kolom artikel
+    list_filter = ('category', 'created_at')  # Filter berdasarkan kategori dan tanggal
+    search_fields = ('title', 'content')  # Pencarian berdasarkan judul dan konten
+    ordering = ('-created_at',)  # Urutkan berdasarkan tanggal terbaru
 
-admin.site.register(UserProfile, UserProfileAdmin)
+admin.site.register(Article, ArticleAdmin)

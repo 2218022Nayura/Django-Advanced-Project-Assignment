@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ article.title }}</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <h1 class="my-4">{{ article.title }}</h1>
-        <p>{{ article.content }}</p>  <!-- Menampilkan konten artikel -->
-        <p><strong>Category:</strong> {{ article.category.name }}</p>  <!-- Menampilkan kategori artikel -->
-        <p><strong>Author:</strong> {{ article.author.user.username }}</p>  <!-- Menampilkan nama pengarang -->
-        <p><strong>Created at:</strong> {{ article.created_at }}</p>  <!-- Menampilkan tanggal dibuat -->
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ article.title }}</h2>
+  <p><strong>Category:</strong> {{ article.category.name }}</p>
+
+  {% if article.image %}
+    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid" style="max-width: 100%; height: auto;">
+  {% endif %}
+
+  <p>{{ article.content }}</p>
+  <p><a href="{% url 'home' %}">Back to Home</a></p>
+{% endblock %}
