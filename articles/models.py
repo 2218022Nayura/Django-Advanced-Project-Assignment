@@ -10,6 +10,14 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+# Menambahkan validasi ukuran gambar profil (maks 2MB)
+    def clean(self):
+        if self.profile_picture:
+            filesize = self.profile_picture.size
+            limit = 2 * 1024 * 1024  # 2MB
+            if filesize > limit:
+                raise ValidationError("File size should be less than 2MB.")
+
 # Model untuk Category
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -17,55 +25,97 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
 # Model untuk Article
 class Article(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    author = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='articles')
 
     def __str__(self):
         return self.title
 
+    # Menambahkan method untuk menghitung jumlah komentar
+    def comment_count(self):
+        return self.comments.count()
+
+    # Menambahkan method untuk menghitung jumlah likes
+    def like_count(self):
+        return self.likes.count()
+
+    class Meta:
+        verbose_name = "Article"
+        verbose_name_plural = "Articles"
+        ordering = ['-created_at']  # Urutkan artikel berdasarkan waktu pembuatan (terbaru di atas)
+
 # Model untuk Comment
 class Comment(models.Model):
-    article = models.ForeignKey(Article, related_name='comments', on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=False, default=1)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Comment by {self.author.user.username} on {self.article.title}"
+        return f"Comment by {self.author.username} on {self.article.title}"
+
+    class Meta:
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments"
+        ordering = ['created_at']  # Urutkan komentar berdasarkan waktu dibuat (terbaru di atas)
+
+# Model untuk Like
+class Like(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='likes')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['article', 'user']  # Untuk memastikan satu user hanya bisa like satu artikel sekali
+        verbose_name = "Like"
+        verbose_name_plural = "Likes"
+
+    def __str__(self):
+        return f"Like by {self.user.username} on {self.article.title}"
 
 # Model untuk Tag
 class Tag(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.name
 
-# Model untuk ArticleTag (Many to Many Relationship)
+    class Meta:
+        verbose_name = "Tag"
+        verbose_name_plural = "Tags"
+
+# Model untuk menghubungkan Tag dan Article (Many-to-Many relationship)
 class ArticleTag(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='tags')
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='articles')
 
     def __str__(self):
         return f"{self.article.title} - {self.tag.name}"
 
-# Model untuk ProfilePicture
-class ProfilePicture(models.Model):
-    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to='profile_pics/')
+    class Meta:
+        verbose_name = "Article Tag"
+        verbose_name_plural = "Article Tags"
+
+# Model untuk Article Views
+class ArticleView(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='views')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    viewed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Profile Picture for {self.user_profile.user.username}"
+        return f"View by {self.user.username} on {self.article.title}"
 
-# Model untuk AuthorBio
-class AuthorBio(models.Model):
-    user_profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
-    bio = models.TextField()
-
-    def __str__(self):
-        return f"Bio of {self.user_profile.user.username}"
+    class Meta:
+        verbose_name = "Article View"
+        verbose_name_plural = "Article Views"
+        unique_together = ['article', 'user']  # Pastikan setiap artikel hanya dihitung 1 kali per pengguna

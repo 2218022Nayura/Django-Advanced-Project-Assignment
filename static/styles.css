@@ -1,0 +1,15 @@
+/* styles.css */
+.hero-section {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+}

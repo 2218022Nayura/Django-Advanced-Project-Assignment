@@ -1,13 +1,33 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-  <h2>{{ article.title }}</h2>
-  <p><strong>Category:</strong> {{ article.category.name }}</p>
+    <div class="container mt-4">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.content }}</p>
+        <hr>
 
-  {% if article.image %}
-    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid" style="max-width: 100%; height: auto;">
-  {% endif %}
+        <!-- Komentar -->
+        <h4>Comments:</h4>
+        {% for comment in article.comments.all %}
+            <div class="mb-3 border p-3 rounded">
+                <strong>{{ comment.author.username }}</strong> on {{ comment.created_at|date:"F j, Y" }}:
+                <p>{{ comment.text }}</p>
+            </div>
+        {% empty %}
+            <p>No comments yet.</p>
+        {% endfor %}
 
-  <p>{{ article.content }}</p>
-  <p><a href="{% url 'home' %}">Back to Home</a></p>
+        <!-- Formulir Komentar -->
+        {% if user.is_authenticated %}
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <textarea class="form-control" name="comment" rows="3" placeholder="Add a comment..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        {% else %}
+            <p><a href="{% url 'login' %}">Log in</a> to add a comment.</p>
+        {% endif %}
+    </div>
 {% endblock %}

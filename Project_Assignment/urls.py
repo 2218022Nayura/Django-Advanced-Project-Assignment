@@ -3,5 +3,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('articles.urls')),  # Home dan artikel
+    path('', include('articles.urls')),  # Include the URLs from the articles app
 ]

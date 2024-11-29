@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Articles in {{ category.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Articles in {{ category.name }}</h1>
+
+    {% if articles %}
+        <ul class="list-group">
+            {% for article in articles %}
+            <li class="list-group-item">
+                <h5>{{ article.title }}</h5>
+                <p>{{ article.content|slice:":150" }}...</p>
+                <a href="{% url 'article_detail' article.pk %}" class="btn btn-primary">Read More</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles available in this category.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

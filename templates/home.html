@@ -1,32 +1,48 @@
-<!-- templates/home.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Welcome to Django Current News</h1>
-    <p>Find the latest and most popular articles on our platform.</p>
-
-    <div class="form-group">
-        <label for="categorySelect">Select Category</label>
-        <select class="form-control" id="categorySelect">
-            <option>Select Category</option>
+    <!-- Filter berdasarkan kategori -->
+    <div class="mb-4">
+        <h3 class="mb-3">Explore Articles by Category</h3>
+        <select class="form-select" id="categorySelect" onchange="if(this.value) window.location.href=this.value;">
+            <option value="">Select Category</option>
             {% for category in categories %}
-                <option>{{ category.name }}</option>
+                <option value="{% url 'article_list_by_category' pk=category.id %}">
+                    {{ category.name }}
+                </option>
+            {% empty %}
+                <option disabled>No categories available</option>
             {% endfor %}
         </select>
     </div>
 
-    <h2>Latest Articles</h2>
+    <!-- Artikel Terbaru -->
+    <h2 class="mb-4">Latest Articles</h2>
     <div class="row">
-        {% for article in articles %}
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ article.title }}</h5>
-                        <p>{{ article.content|truncatewords:20 }}</p>
-                        <a href="{% url 'article_detail' article.pk %}" class="btn btn-primary">Read More</a>
+        {% if articles %}
+            {% for article in articles %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100">
+                        {% if article.image %}
+                            <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}">
+                        {% else %}
+                            <img src="{% static 'images/default.jpg' %}" class="card-img-top" alt="Default Image">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <p class="card-text">{{ article.content|truncatewords:30 }}</p>
+                            <a href="{% url 'article_detail' article.pk %}" class="btn btn-primary mt-auto">Read More</a>
+                        </div>
+                        <div class="card-footer text-muted text-center">
+                            <small>Published on {{ article.created_at|date:"F j, Y" }}</small>
+                        </div>
                     </div>
                 </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center">
+                <p class="text-muted">No articles available at the moment. Please check back later.</p>
             </div>
-        {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}

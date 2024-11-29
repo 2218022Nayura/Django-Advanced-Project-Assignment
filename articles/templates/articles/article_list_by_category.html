@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 
+{% block title %}Articles in {{ category.name }}{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
-    <h1>Articles in {{ category.name }}</h1>
+    <h1 class="mb-4">Articles in {{ category.name }}</h1>
     <ul class="list-group">
         {% for article in articles %}
-            <li class="list-group-item">
-                <a href="{% url 'article_detail' article.pk %}">
-                    {{ article.title }}
-                </a>
-            </li>
+        <li class="list-group-item">
+            <h5>{{ article.title }}</h5>
+            <p>{{ article.content|slice:":150" }}...</p>
+            <a href="{% url 'article_detail' article.pk %}" class="btn btn-primary">Read More</a>
+        </li>
         {% endfor %}
     </ul>
 </div>
