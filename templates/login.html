@@ -6,6 +6,10 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+
+        <!-- Menyimpan URL yang dituju setelah login -->
+        <input type="hidden" name="next" value="{{ next_url }}">
+
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
     <p>Belum punya akun? <a href="{% url 'register' %}">Daftar</a></p>

@@ -1,29 +1,56 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
-from .models import Article, Category, Comment
-from django.contrib.auth import login, authenticate, logout
-from .forms import RegisterForm, ArticleForm, CommentForm
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LogoutView
+from .models import Category
+from django.contrib.auth import login, authenticate
+from .forms import RegisterForm, ArticleForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import render
-# other imports...
+from django.contrib.auth.views import LogoutView
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from .models import Article
+from .forms import CommentForm
 
-# Your view functions...
+
+
 
 # CBV for Article List
 class ArticleListView(ListView):
+
     model = Article
+
     template_name = 'article_list.html'
+
     context_object_name = 'articles'
+
     paginate_by = 10  # Adding pagination
 
+
     def get_context_data(self, **kwargs):
+
         context = super().get_context_data(**kwargs)
+
         context['categories'] = Category.objects.all()  # Adding categories to the context
+
+        return context
+
+
+class ArticleDetailView(DetailView):
+
+    model = Article
+
+    template_name = 'article_detail.html'
+
+    context_object_name = 'article'
+
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        context['form'] = CommentForm()  # Menambahkan form komentar ke konteks
+
         return context
 
 # CBV for Article Detail
@@ -56,14 +83,17 @@ def login_view(request):
             return redirect(request.GET.get('next', 'home'))  # Redirect to the intended page or home
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+
+    # Menambahkan pesan jika user mengakses halaman login karena mencoba mengakses halaman yang memerlukan login
+    next_url = request.GET.get('next', 'home')
+    return render(request, 'login.html', {'form': form, 'next_url': next_url})
 
 # Articles accessible only by logged-in users
 @login_required
 def article_list_by_category(request, pk):
-    category = get_object_or_404(Category, pk=pk)  # Get category by primary key (pk)
-    articles = Article.objects.filter(category=category)  # Filter articles in this category
-    return render(request, 'article_list_by_category.html', {'category': category, 'articles': articles})
+    category = Category.objects.get(pk=pk)
+    articles = category.articles.all()
+    return render(request, 'articles/article_list_by_category.html', {'category': category, 'articles': articles})
 
 # Articles accessible only by admin users
 @login_required
@@ -79,10 +109,12 @@ def article_edit(request, pk):
         form = ArticleForm(instance=article)
     return render(request, 'article_edit.html', {'form': form})
 
+
 # Add comment to article
 @login_required
 def add_comment(request, pk):
     article = get_object_or_404(Article, pk=pk)
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -90,11 +122,12 @@ def add_comment(request, pk):
             comment.article = article
             comment.author = request.user
             comment.save()
-            return redirect('article_detail', pk=article.pk)  # After saving the comment, stay on the same page
-    else:
-        form = CommentForm()
+            return redirect('article_detail', pk=article.pk)
 
-    return render(request, 'article_detail.html', {'article': article, 'form': form})
+    return redirect('article_detail', pk=article.pk)
+
+
+
 
 # Create a new article, only for logged-in users
 @login_required

@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os  # Ditambahkan untuk penggunaan environment variables
 
@@ -26,7 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'articles',  # Aplikasi Anda
+    'articles',  # Aplikasi Saya
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -38,7 +38,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 
 ROOT_URLCONF = 'Project_Assignment.urls'
 
@@ -106,7 +105,10 @@ MEDIA_ROOT = BASE_DIR / 'media'  # Direktori tempat file media disimpan
 
 # Pengaturan Login dan Logout Redirect
 LOGIN_REDIRECT_URL = '/'  # Redirect ke homepage setelah login
-LOGOUT_REDIRECT_URL = '/welcome/'  # Redirect ke halaman welcome setelah logou
+LOGOUT_REDIRECT_URL = 'welcome'  # Redirect ke halaman welcome setelah logout
+
+# Pengaturan Login URL untuk pengguna yang belum login
+LOGIN_URL = 'login'  # Pastikan ini mengarah ke URL login Anda
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

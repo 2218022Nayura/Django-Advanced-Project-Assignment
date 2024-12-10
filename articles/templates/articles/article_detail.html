@@ -2,15 +2,37 @@
 <h2>{{ article.title }}</h2>
 <p>{{ article.content }}</p>
 
+<!-- Section untuk komentar -->
 <h3>Comments:</h3>
-{% for comment in article.comment_set.all %}
-    <p>{{ comment.author }}: {{ comment.content }}</p>
-{% endfor %}
+{% if article.comments.exists %}
+    {% for comment in article.comments.all %}
+        <p><strong>{{ comment.author.username }}</strong>: {{ comment.content }}</p>
+    {% endfor %}
+{% else %}
+    <p>No comments yet. Be the first to comment!</p>
+{% endif %}
 
-<!-- Comment Form -->
+<!-- Form untuk menambahkan komentar -->
 <h3>Add a Comment</h3>
-<form method="post">
+<form method="post" action="{% url 'add_comment' article.pk %}">
     {% csrf_token %}
+
+    <!-- Form komentar -->
     {{ form.as_p }}
-    <button type="submit">Add Comment</button>
+
+    <!-- Pesan error form -->
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <!-- Tombol submit -->
+    <button type="submit" class="btn btn-primary">Add Comment</button>
 </form>
