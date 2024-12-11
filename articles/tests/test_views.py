@@ -1,16 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Category, Article
 from django.contrib.auth import login, authenticate
-from .forms import RegisterForm, ArticleForm, CommentForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.views import LogoutView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from .models import Article
-from .forms import CommentForm
+from articles.models import Article, Category
+from articles.forms import RegisterForm, ArticleForm, CommentForm
+
 
 # CBV for Article List
 class ArticleListView(ListView):
@@ -24,6 +23,7 @@ class ArticleListView(ListView):
         context['categories'] = Category.objects.all()  # Adding categories to the context
         return context
 
+
 # CBV for Article Detail
 class ArticleDetailView(DetailView):
     model = Article
@@ -34,6 +34,7 @@ class ArticleDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['form'] = CommentForm()  # Adding comment form to context
         return context
+
 
 # CBV for Article Create
 class ArticleCreateView(LoginRequiredMixin, CreateView):
@@ -48,6 +49,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('article_detail', kwargs={'pk': self.object.pk})
 
+
 # CBV for Article Update
 class ArticleUpdateView(LoginRequiredMixin, UpdateView):
     model = Article
@@ -59,6 +61,7 @@ class ArticleUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('article_detail', kwargs={'pk': self.object.pk})
+
 
 # CBV for Article Delete
 class ArticleDeleteView(LoginRequiredMixin, DeleteView):
@@ -72,6 +75,7 @@ class ArticleDeleteView(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy('article_list')  # Redirect to the article list page after delete
 
+
 # CBV for Category List
 class CategoryListView(ListView):
     model = Category
@@ -83,6 +87,7 @@ class CategoryListView(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()  # Adding categories to the context
         return context
+
 
 # CBV for Article List by Category
 class ArticleListByCategoryView(ListView):
@@ -99,6 +104,7 @@ class ArticleListByCategoryView(ListView):
         context['category'] = get_object_or_404(Category, pk=self.kwargs['pk'])
         return context
 
+
 # FBV for Register
 def register(request):
     if request.method == 'POST':
@@ -113,6 +119,7 @@ def register(request):
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
 
+
 # FBV for Login
 def login_view(request):
     if request.method == 'POST':
@@ -124,9 +131,9 @@ def login_view(request):
     else:
         form = AuthenticationForm()
 
-    # Menambahkan pesan jika user mengakses halaman login karena mencoba mengakses halaman yang memerlukan login
     next_url = request.GET.get('next', 'home')
     return render(request, 'login.html', {'form': form, 'next_url': next_url})
+
 
 # Articles accessible only by logged-in users
 @login_required
@@ -134,6 +141,7 @@ def article_list_by_category(request, pk):
     category = Category.objects.get(pk=pk)
     articles = category.articles.all()
     return render(request, 'articles/article_list_by_category.html', {'category': category, 'articles': articles})
+
 
 # Articles accessible only by admin users
 @login_required
@@ -148,6 +156,7 @@ def article_edit(request, pk):
     else:
         form = ArticleForm(instance=article)
     return render(request, 'article_edit.html', {'form': form})
+
 
 # Add comment to article
 @login_required
@@ -165,6 +174,7 @@ def add_comment(request, pk):
 
     return redirect('article_detail', pk=article.pk)
 
+
 # Create a new article, only for logged-in users
 @login_required
 def create_article(request):
@@ -178,6 +188,7 @@ def create_article(request):
     else:
         form = ArticleForm()
     return render(request, 'create_article.html', {'form': form})
+
 
 # Custom Logout View to redirect after logout
 class CustomLogoutView(LogoutView):
