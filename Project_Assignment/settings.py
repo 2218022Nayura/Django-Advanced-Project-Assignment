@@ -15,7 +15,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-l1m9(bl_nil%@5sxj+p
 DEBUG = True
 
 # ALLOWED_HOSTS: pastikan ini diubah untuk produk ke domain yang valid
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']  # Tambahkan domain yang diizinkan jika di hosting
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.herokuapp.com']  # Tambahkan domain Heroku
 
 # Application definition
 INSTALLED_APPS = [
@@ -31,10 +31,10 @@ INSTALLED_APPS = [
     # REST API ENDPOINT
     'rest_framework',
     'rest_framework.authtoken',
-
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Menambahkan WhiteNoise untuk file statis
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -68,8 +68,8 @@ WSGI_APPLICATION = 'Project_Assignment.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',  # Gunakan SQLite untuk pengembangan
+        'ENGINE': 'django.db.backends.sqlite3',  # Gunakan SQLite untuk pengembangan
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -103,6 +103,9 @@ STATIC_URL = 'static/'
 
 # Menambahkan direktori untuk static files
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# Menetapkan STATIC_ROOT untuk Heroku
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media files (images, etc.)
 MEDIA_URL = '/media/'  # URL yang dapat diakses oleh pengguna untuk mengakses file media
