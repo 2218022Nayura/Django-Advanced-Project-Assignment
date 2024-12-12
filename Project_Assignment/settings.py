@@ -27,6 +27,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'articles',  # Aplikasi Saya
     'django_extensions',
+
+    # REST API ENDPOINT
+    'rest_framework',
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
