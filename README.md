@@ -13,6 +13,7 @@ Django Web Information adalah aplikasi berbasis web untuk mengelola artikel ilmi
 - **Deployment**: Heroku 
 
 ## News Update
+- Next Update   : Fix Deployment, More Unit Testing etc.
 -  Dec 14, 2024 : UI/UX Improvements
 -  Dec 12, 2024 : First Deploy to Heroku
 -  Dec 12, 2024 : Add REST API using Django Rest Framework (DRF)
