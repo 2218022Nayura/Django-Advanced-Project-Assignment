@@ -1,55 +1,25 @@
-# Django Article Hub (DAH) - Project Assignment Django Advanced
-### Application Title: Django Article Hub (DAH)
+# Django Web Information - Project Assignment Django Advanced
+### Application Title: Django Web Information
 
 ## Konsep Aplikasi:
-Django Article Hub (DAH) adalah aplikasi berbasis web untuk mengelola artikel. Platform ini dirancang untuk memungkinkan pengguna membaca artikel yang tersedia secara publik, membuat artikel baru, mengedit artikel yang sudah ada, dan menghapus artikel milik mereka. Artikel dikelompokkan berdasarkan kategori untuk mempermudah navigasi. Admin panel kustom juga disediakan untuk pengelolaan data seperti kategori, pengguna, dan artikel.
+Django Web Information adalah aplikasi berbasis web untuk mengelola artikel ilmiah maupun berita. Platform ini dirancang untuk memungkinkan pengguna membaca artikel yang tersedia secara publik, artikel dikelompokkan berdasarkan kategori untuk mempermudah navigasi. Admin panel kustom juga disediakan untuk pengelolaan data seperti kategori, pengguna,artikel dan lain lain. 
 
 ## Spesifikasi Aplikasi:
 - **Backend Framework**: Django
-- **Frontend**: Django Template Engine, Bootstrap
+- **Frontend**: Django Template Engine, Bootstrap, HTML, CSS, JS
 - **Database**: SQLite
 - **Programming Language**: Python
-- **Libraries**: Pillow, Django REST Framework (direncanakan untuk fitur API)
+- **Libraries**: Pillow, Django REST Framework
+- **Deployment**: Heroku 
 
-## PROGRESS
-
-### **Day 1: Setup Project and Model Creation**
-#### Date: 20 Nov 2024
-- **Setup Django Project**:_
-  - Initialized Django project using `django-admin startproject` and created the main application **articles** using `startapp`.
-  
-- **Model Creation**:
-  - Created models for **UserProfile**, **Article**, and **Category**.
-  - **UserProfile** is linked to Django's default **User** model.
-  - **Article** includes fields such as `title`, `content(soon)`, `category`, `author`, `created_at`, and `updated_at(soon)`.
-  - **Category** helps organize articles into categories.
-  
-- **Database Migration**:
-  - Successfully performed database migration to align the models with the SQLite database.
-  
-- **Testing**:
-  - Confirmed the Django project runs correctly with models and database functioning as expected.
-
----
-
-### **Day 2: Admin Panel and Dummy Data**
-#### Date: 21 Nov 2024
-- **Admin Panel Customization**:
-  - Created models for **Article**, **Category**, and **UserProfile**.
-  - Customized admin panel to display, filter, and search articles.
-  - Articles are ordered by creation date for easy management.
-
-- **Dummy Data Added**:
-  - Added dummy categories: `Tech`, `Lifestyle`, and `Testing`.
-  - Added dummy articles: `Tech Article 1`, `Lifestyle Article 1`, and `Test 1`.
-
-- **Testing**:
-  - Successfully tested adding, editing, and deleting articles and categories via the Django admin panel.
-
-- **Git Commit**:
-  - Commit message: **"Customize admin panel and add dummy data"**
-  - Pushed to GitHub to track progress.
-
----
-
-
+## News Update
+-  Dec 14, 2024 : UI/UX Improvements
+-  Dec 12, 2024 : First Deploy to Heroku
+-  Dec 12, 2024 : Add REST API using Django Rest Framework (DRF)
+-  Dec 11, 2024 : Add Unit Testing
+-  Dec 10, 2024 : Fix Login & Logout
+-  Dec 6, 2024  : Add CRUD Admin Panel
+-  Nov 30, 2024 : Add Authentication and User Role Management 
+-  Nov 22, 2024 : Implement Basic Views and Templates
+-  Nov 21, 2024 : Customize Admin Panel and Add Dummy Data
+-  Nov 20, 2024 : Setup Project Structure Articles APP
