@@ -2,7 +2,7 @@
 ### Application Title: Django Web Information
 
 ## Konsep Aplikasi:
-Django Web Information adalah aplikasi berbasis web untuk mengelola artikel ilmiah maupun berita. Platform ini dirancang untuk memungkinkan pengguna membaca artikel yang tersedia secara publik, artikel dikelompokkan berdasarkan kategori untuk mempermudah navigasi. Admin panel kustom juga disediakan untuk pengelolaan data seperti kategori, pengguna,artikel dan lain lain. 
+Django Web Information adalah aplikasi berbasis web untuk mengelola artikel ilmiah maupun berita. Platform ini dirancang untuk memungkinkan pengguna membaca artikel yang tersedia secara publik, artikel dikelompokkan berdasarkan kategori untuk mempermudah navigasi. Admin panel kustom juga disediakan untuk pengelolaan data seperti kategori, pengguna, artikel dan lain lain. 
 
 ## Spesifikasi Aplikasi:
 - **Backend Framework**: Django
