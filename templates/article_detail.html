@@ -1,38 +1,78 @@
-<!-- article_detail.html -->
-<h2>{{ article.title }}</h2>
-<p>{{ article.content }}</p>
+{% extends 'base.html' %}
 
-<!-- Section untuk komentar -->
-<h3>Comments:</h3>
-{% if article.comments.exists %}
-    {% for comment in article.comments.all %}
-        <p><strong>{{ comment.author.username }}</strong>: {{ comment.content }}</p>
-    {% endfor %}
-{% else %}
-    <p>No comments yet. Be the first to comment!</p>
-{% endif %}
+{% load static %} <!-- Pastikan ini ditambahkan untuk memuat tag static -->
 
-<!-- Form untuk menambahkan komentar -->
-<h3>Add a Comment</h3>
-<form method="post" action="{% url 'add_comment' article.pk %}">
-    {% csrf_token %}
+{% block head %}
+    <link href="{% static 'css/article_detail.css' %}" rel="stylesheet">
+{% endblock %}
 
-    <!-- Form komentar -->
-    {{ form.as_p }}
+{% block content %}
+    <section id="article-detail" class="article-detail py-5">
+        <div class="container">
+            <!-- Article Title -->
+            <div class="article-header mb-4">
+                <h1 class="display-4">{{ article.title }}</h1>
+                <p class="text-muted">Published on {{ article.created_at|date:"F j, Y" }}</p>
+            </div>
 
-    <!-- Pesan error form -->
-    {% if form.errors %}
-        <div class="alert alert-danger">
-            <ul>
-                {% for field, errors in form.errors.items %}
-                    {% for error in errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                {% endfor %}
-            </ul>
+            <!-- Article Content -->
+            <div class="article-content mb-5">
+                <p>{{ article.content }}</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section">
+                <h3>Comments:</h3>
+                {% if article.comments.exists %}
+                    <div class="comment-list mb-4">
+                        {% for comment in article.comments.all %}
+                            <div class="card mb-3 comment-box">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ comment.author.username }}</h5>
+                                    <p class="card-text">{{ comment.content }}</p>
+                                    <p class="text-muted"><small>Commented on {{ comment.created_at|date:"F j, Y" }}</small></p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No comments yet. Be the first to comment!</p>
+                {% endif %}
+
+                <!-- Form untuk menambahkan komentar -->
+                <div class="comment-form mt-5">
+                    <h3>Add a Comment</h3>
+                    <form method="post" action="{% url 'add_comment' article.pk %}">
+                        {% csrf_token %}
+
+                        <!-- Input Komentar -->
+                        <div class="mb-3">
+                            {{ form.as_p }}
+                        </div>
+
+                        <!-- Pesan Error -->
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        <!-- Tombol Submit -->
+                        <button type="submit" name="add_comment" class="btn btn-primary">Add Comment</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tombol Kembali ke Home -->
+            <div class="back-to-home mt-4 text-center">
+                <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+            </div>
         </div>
-    {% endif %}
-
-    <!-- Tombol submit -->
-    <button type="submit" name='add_comment' class="btn btn-primary">add Comment</button>
-</form>
+    </section>
+{% endblock %}

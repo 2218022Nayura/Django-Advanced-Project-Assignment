@@ -1,9 +1,10 @@
-/* Article Detail */
+/* Article Detail Page */
 .article-detail {
     padding: 30px 0;
     background-color: #f8f9fa;
 }
 
+/* Header (Judul Artikel) */
 .article-header {
     margin-bottom: 30px;
 }
@@ -25,12 +26,14 @@
     line-height: 1.8;
     font-size: 1.2rem;
     color: #495057;
+    text-align: justify; /* Meratakan teks kanan dan kiri */
 }
 
 .article-content .lead {
     font-size: 1.4rem;
     font-weight: 400;
     color: #343a40;
+    text-align: justify;
 }
 
 /* Comment Section */
@@ -145,18 +148,4 @@
         font-size: 1rem;
         padding: 12px;
     }
-}
-.article-content {
-    margin-bottom: 30px;
-    line-height: 1.8; /* Memberikan jarak antar baris agar lebih nyaman dibaca */
-    font-size: 1.2rem;
-    color: #495057;
-    text-align: justify; /* Meratakan teks kanan-kiri */
-}
-
-.article-content .lead {
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: #343a40;
-    text-align: justify; /* Meratakan teks untuk paragraf pembuka */
 }
